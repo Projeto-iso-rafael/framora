@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SABORES DA COLÔNIA | Agricultura Familiar & Produtos Artesanais</title>
+  <meta name="description" content="Sabores da Colônia - Tradição de família polonesa em agricultura familiar. Sucos, polpas, geleias e frutas em calda produzidas artesanalmente com frutas reais.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <style>
+    :root {
+      --color-primary: #193322;
+      --color-primary-dark: #0f2015;
+      --color-primary-light: #264a32;
+      --color-accent-berry: #8b1a32;
+      --color-accent-raspberry: #b82b52;
+      --color-accent-gold: #c8953c;
+      --color-accent-gold-light: #e2b35c;
+      --color-cream-bg: #f8f6f0;
+      --color-card-bg: #ffffff;
+      --color-card-alt: #f3efe6;
+      --color-text-dark: #1b261d;
+      --color-text-muted: #536457;
+      --color-border: #e2ddd3;
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --shadow-sm: 0 4px 15px rgba(15, 32, 21, 0.05);
+      --shadow-md: 0 12px 30px rgba(15, 32, 21, 0.08);
+      --shadow-lg: 0 20px 50px rgba(15, 32, 21, 0.14);
+      --radius-sm: 8px;
+      --radius-md: 16px;
+      --radius-lg: 24px;
+      --radius-full: 9999px;
+      --transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; background: var(--color-cream-bg); color: var(--color-text-dark); font-family: var(--font-body); -webkit-font-smoothing: antialiased; }
+    body { overflow-x: hidden; line-height: 1.6; }
+    ul { list-style: none; }
+    a { text-decoration: none; color: inherit; transition: var(--transition); }
+    img { max-width: 100%; display: block; }
+
+    .container { max-width: 1240px; margin: 0 auto; padding: 0 24px; }
+    
+    .section-header { text-align: center; max-width: 720px; margin: 0 auto 50px; }
+    .section-badge { display: inline-flex; align-items: center; gap: 8px; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 2px; color: var(--color-accent-berry); font-weight: 700; background: rgba(139, 26, 50, 0.08); padding: 6px 18px; border-radius: var(--radius-full); margin-bottom: 14px; }
+    .section-title { font-family: var(--font-display); font-size: clamp(2.1rem, 3.4vw, 3rem); font-weight: 700; color: var(--color-primary-dark); line-height: 1.2; margin-bottom: 14px; }
+    .section-desc { font-size: 1.05rem; color: var(--color-text-muted); line-height: 1.7; }
+
+    /* Buttons */
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 14px 30px; font-weight: 600; font-size: 0.92rem; border-radius: var(--radius-full); cursor: pointer; transition: var(--transition); border: 1px solid transparent; }
+    .btn-primary { background: var(--color-accent-berry); color: #fff; box-shadow: 0 8px 25px rgba(139, 26, 50, 0.35); }
+    .btn-primary:hover { background: #a6203c; transform: translateY(-3px); box-shadow: 0 12px 30px rgba(139, 26, 50, 0.45); color: #fff; }
+    .btn-outline { background: transparent; border: 1px solid rgba(255, 255, 255, 0.4); color: #fff; backdrop-filter: blur(10px); }
+    .btn-outline:hover { background: #fff; color: var(--color-primary-dark); transform: translateY(-3px); }
+    .btn-card { background: var(--color-cream-bg); border: 1px solid var(--color-border); color: var(--color-primary); padding: 10px 18px; font-size: 0.88rem; width: 100%; border-radius: var(--radius-sm); font-weight: 600; }
+    .btn-card:hover { background: #25d366; color: #fff; border-color: #25d366; }
+
+    /* ── TOP ANNOUNCEMENT BAR ───────────────────────────────── */
+    .top-bar { background: var(--color-primary-dark); color: rgba(255, 255, 255, 0.85); font-size: 0.82rem; padding: 9px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.08); }
+    .top-bar-content { display: flex; justify-content: space-between; align-items: center; }
+    .top-bar a { color: #fff; font-weight: 600; }
+    .top-bar a:hover { color: var(--color-accent-gold); }
+
+    /* ── HEADER & NAVIGATION ────────────────────────────────── */
+    header { position: sticky; top: 0; left: 0; width: 100%; z-index: 1000; background: rgba(25, 51, 34, 0.96); backdrop-filter: blur(15px); border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding: 14px 0; }
+    .header-content { display: flex; align-items: center; justify-content: space-between; }
+    
+    .brand-block { display: flex; align-items: center; gap: 14px; }
+    .brand-icon-emblem { width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, var(--color-accent-berry), #540e1d); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.25); flex-shrink: 0; }
+    .brand-name { font-family: var(--font-display); font-size: 1.35rem; font-weight: 700; color: #ffffff; letter-spacing: 0.5px; line-height: 1.1; }
+    .brand-tagline { font-size: 0.68rem; letter-spacing: 2.5px; color: var(--color-accent-gold); text-transform: uppercase; font-weight: 600; display: block; }
+
+    nav ul { display: flex; gap: 32px; }
+    .nav-link { font-size: 0.88rem; font-weight: 600; letter-spacing: 1px; color: rgba(255, 255, 255, 0.82); position: relative; padding: 6px 0; text-transform: uppercase; }
+    .nav-link:hover, .nav-link.active { color: #ffffff; }
+    .nav-link::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: var(--color-accent-gold); transition: var(--transition); }
+    .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+
+    .header-whatsapp-btn { background: #25d366; color: #fff; padding: 9px 20px; font-size: 0.88rem; border-radius: var(--radius-full); font-weight: 600; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3); }
+    .header-whatsapp-btn:hover { background: #1eb956; transform: translateY(-2px); color: #fff; }
+
+    .mobile-toggle { display: none; background: none; border: none; cursor: pointer; flex-direction: column; gap: 5px; padding: 6px; }
+    .mobile-toggle span { width: 25px; height: 2px; background: #fff; transition: var(--transition); }
+
+    /* ── HERO SECTION ───────────────────────────────────────── */
+    .hero { position: relative; min-height: 88vh; background: #0d1a11 url('imagem_hero.jpg') center / cover no-repeat; display: flex; align-items: center; color: #fff; padding: 80px 0; overflow: hidden; }
+.hero-grid { display: block; position: relative; z-index: 2; width: 100%; }
+.hero-content { max-width: 640px; }
+.hero-actions .btn { white-space: nowrap; min-width: 240px; }
+    .hero-tag { display: inline-flex; align-items: center; gap: 8px; background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.18); backdrop-filter: blur(8px); padding: 7px 18px; border-radius: var(--radius-full); font-size: 0.78rem; letter-spacing: 2px; color: var(--color-accent-gold-light); font-weight: 600; margin-bottom: 24px; }
+    .hero-title { font-family: var(--font-display); font-size: clamp(2.4rem, 4.4vw, 4rem); font-weight: 700; line-height: 1.15; margin-bottom: 22px; color: #ffffff; }
+    .hero-desc { font-size: clamp(1.05rem, 1.25vw, 1.2rem); color: rgba(255, 255, 255, 0.82); line-height: 1.75; margin-bottom: 38px; max-width: 580px; font-weight: 300; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 16px; }
+
+    /* Hero Visual Showcase */
+    .hero-visual { display: flex; justify-content: center; align-items: center; position: relative; }
+    .hero-sphere-showcase { position: relative; width: 340px; height: 340px; display: flex; align-items: center; justify-content: center; }
+    
+    .hero-berry-sphere { position: relative; width: 230px; height: 230px; border-radius: 50%; background: radial-gradient(circle at 35% 32%, #e53860, #80132f 65%, #2a040d); box-shadow: inset -10px -10px 40px rgba(0,0,0,0.8), inset 15px 15px 30px rgba(255,255,255,0.3), 0 25px 50px rgba(0,0,0,0.5); animation: floatingFruit 6s ease-in-out infinite; }
+    .hero-berry-sphere::after { content: ''; position: absolute; top: 15%; left: 20%; width: 45px; height: 22px; background: rgba(255, 255, 255, 0.45); border-radius: 50%; transform: rotate(-30deg); filter: blur(3px); }
+    .hero-berry-leaf { position: absolute; top: -16px; left: 50%; width: 65px; height: 38px; background: radial-gradient(ellipse at center, #357a4e, #13331e); border-radius: 0 100% 0 100%; transform: translateX(-50%) rotate(-15deg); box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+
+    .hero-floating-badge-top { position: absolute; top: 10px; left: -10px; background: rgba(255, 255, 255, 0.95); color: var(--color-primary-dark); padding: 12px 18px; border-radius: var(--radius-md); box-shadow: var(--shadow-lg); font-size: 0.85rem; font-weight: 700; display: flex; align-items: center; gap: 10px; z-index: 3; }
+    .hero-floating-badge-top i { color: var(--color-accent-berry); font-size: 1.1rem; }
+    
+    .hero-floating-badge-bottom { position: absolute; bottom: 20px; right: -10px; background: rgba(15, 32, 21, 0.92); border: 1px solid rgba(255, 255, 255, 0.15); color: #fff; padding: 14px 20px; border-radius: var(--radius-md); box-shadow: var(--shadow-lg); z-index: 3; display: flex; align-items: center; gap: 12px; }
+    .hero-floating-badge-bottom i { color: var(--color-accent-gold); font-size: 1.5rem; }
+    .hero-floating-badge-bottom strong { display: block; font-size: 0.92rem; }
+    .hero-floating-badge-bottom span { font-size: 0.78rem; color: rgba(255, 255, 255, 0.75); }
+
+    @keyframes floatingFruit { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-16px); } }
+
+    /* ── HIGHLIGHTS STRIP ───────────────────────────────────── */
+    .highlights-strip { background: #efebe2; border-bottom: 1px solid var(--color-border); padding: 24px 0; }
+    .highlights-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; text-align: center; }
+    .highlight-item { display: flex; align-items: center; justify-content: center; gap: 14px; }
+    .highlight-icon { width: 44px; height: 44px; border-radius: 50%; background: var(--color-primary); color: var(--color-accent-gold); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; }
+    .highlight-text strong { display: block; font-size: 0.98rem; color: var(--color-primary-dark); }
+    .highlight-text span { font-size: 0.82rem; color: var(--color-text-muted); }
+
+    /* ── MAIN SECTION: PRODUTOS ARTESANAIS ──────────────────── */
+    .products-section { padding: 100px 0; background: #fdfbf7; }
+
+    .product-filter-tabs { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-bottom: 45px; }
+    .filter-tab { background: #fff; border: 1px solid var(--color-border); padding: 10px 24px; border-radius: var(--radius-full); font-size: 0.88rem; font-weight: 600; cursor: pointer; color: var(--color-text-muted); transition: var(--transition); }
+    .filter-tab:hover, .filter-tab.active { background: var(--color-primary); color: #fff; border-color: var(--color-primary); }
+
+    .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 28px; margin-bottom: 50px; }
+    
+    .product-card { background: #fff; border-radius: var(--radius-md); border: 1px solid var(--color-border); overflow: hidden; box-shadow: var(--shadow-sm); display: flex; flex-direction: column; transition: var(--transition); position: relative; }
+    .product-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); border-color: rgba(200, 149, 60, 0.4); }
+
+    .card-banner { height: 210px; position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+    .card-real-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; z-index: 1; }
+    .product-card:hover .card-real-img { transform: scale(1.08); }
+
+    /* Visual fallbacks with theme gradients & icons */
+    .card-artisan-visual { width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #fff; gap: 8px; transition: transform 0.5s ease; }
+    .product-card:hover .card-artisan-visual { transform: scale(1.05); }
+    .card-icon { font-size: 3.2rem; filter: drop-shadow(0 4px 10px rgba(0,0,0,0.3)); }
+    .card-badge-label { font-family: var(--font-display); font-size: 1.15rem; font-weight: 600; letter-spacing: 1px; }
+
+    .bg-uva { background: linear-gradient(135deg, #37183d, #1a081e); }
+    .bg-framboesa { background: linear-gradient(135deg, #a11f42, #52091c); }
+    .bg-morango { background: linear-gradient(135deg, #b8233f, #5e0818); }
+    .bg-geleia-morango { background: linear-gradient(135deg, #991934, #440512); }
+    .bg-geleia-amora { background: linear-gradient(135deg, #2b1236, #120417); }
+    .bg-geleia-frutas { background: linear-gradient(135deg, #701635, #350616); }
+    .bg-calda { background: linear-gradient(135deg, #87481b, #3d1b04); }
+
+    .card-type-tag { position: absolute; top: 14px; left: 14px; background: rgba(255, 255, 255, 0.94); color: var(--color-primary-dark); font-size: 0.72rem; font-weight: 700; text-transform: uppercase; padding: 5px 12px; border-radius: var(--radius-full); letter-spacing: 1px; box-shadow: 0 2px 8px rgba(0,0,0,0.15); z-index: 2; }
+    .card-quality-tag { position: absolute; top: 14px; right: 14px; background: rgba(200, 149, 60, 0.95); color: #fff; font-size: 0.68rem; font-weight: 700; text-transform: uppercase; padding: 5px 10px; border-radius: var(--radius-full); letter-spacing: 0.5px; z-index: 2; }
+
+    .card-body { padding: 22px; display: flex; flex-direction: column; flex-grow: 1; }
+    .card-category { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--color-accent-berry); font-weight: 700; margin-bottom: 6px; }
+    .card-title { font-family: var(--font-display); font-size: 1.35rem; color: var(--color-primary-dark); margin-bottom: 10px; font-weight: 700; line-height: 1.25; }
+    .card-desc { font-size: 0.88rem; color: var(--color-text-muted); line-height: 1.6; margin-bottom: 22px; flex-grow: 1; }
+
+    .view-all-container { text-align: center; margin-top: 10px; }
+    .btn-view-all { background: var(--color-primary); color: #fff; padding: 15px 38px; font-size: 0.95rem; font-weight: 600; border-radius: var(--radius-full); }
+    .btn-view-all:hover { background: var(--color-accent-berry); transform: translateY(-3px); box-shadow: var(--shadow-md); color: #fff; }
+
+    /* ── SEÇÃO HISTÓRIA ─────────────────────────────────────── */
+    .history-section { padding: 100px 0; background: #fff; }
+    .history-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 60px; align-items: center; }
+    .story-quote { font-family: var(--font-display); font-size: 1.28rem; font-style: italic; color: var(--color-primary); line-height: 1.65; margin: 20px 0; border-left: 3px solid var(--color-accent-gold); padding-left: 20px; }
+    .history-text p { color: var(--color-text-muted); font-size: 0.95rem; line-height: 1.8; margin-bottom: 16px; }
+    
+    .history-checkmarks { margin-top: 24px; display: flex; flex-direction: column; gap: 10px; }
+    .history-checkmarks li { display: flex; align-items: center; gap: 10px; font-weight: 600; font-size: 0.92rem; color: var(--color-primary-dark); }
+    .history-checkmarks i { color: #25d366; font-size: 0.85rem; }
+
+    /* ── SEÇÃO DA NOSSA TERRA ───────────────────────────────── */
+    .terroir-section { padding: 100px 0; background: var(--color-card-alt); }
+    .terroir-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin-bottom: 50px; }
+    .terroir-box { background: #fff; padding: 36px 28px; border-radius: var(--radius-md); border: 1px solid var(--color-border); box-shadow: var(--shadow-sm); transition: var(--transition); }
+    .terroir-box:hover { transform: translateY(-5px); border-color: var(--color-accent-gold); box-shadow: var(--shadow-md); }
+    .terroir-icon { font-size: 2.2rem; color: var(--color-primary); margin-bottom: 18px; }
+    .terroir-box h3 { font-family: var(--font-display); font-size: 1.3rem; color: var(--color-primary-dark); margin-bottom: 10px; }
+    .terroir-box p { font-size: 0.9rem; color: var(--color-text-muted); line-height: 1.65; }
+
+    .terroir-cta-banner { background: var(--color-primary); color: #fff; border-radius: var(--radius-md); padding: 40px; display: flex; align-items: center; justify-content: space-between; gap: 30px; box-shadow: var(--shadow-md); }
+    .terroir-cta-banner h3 { font-family: var(--font-display); font-size: 1.6rem; margin-bottom: 8px; }
+    .terroir-cta-banner p { font-size: 0.95rem; color: rgba(255, 255, 255, 0.82); }
+
+    /* ── FOOTER FEATURES (OS 4 DIFERENCIAIS) ─────────────────── */
+    .footer-features-section { padding: 80px 0; background: var(--color-primary-dark); color: #ffffff; border-top: 1px solid rgba(255, 255, 255, 0.08); }
+    .features-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; }
+    .feature-card { text-align: center; padding: 24px 16px; border-radius: var(--radius-md); transition: var(--transition); }
+    .feature-card:hover { transform: translateY(-6px); background: rgba(255, 255, 255, 0.03); }
+    .feature-icon-circle { width: 72px; height: 72px; margin: 0 auto 20px; border-radius: 50%; background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.12); display: flex; align-items: center; justify-content: center; font-size: 1.8rem; color: var(--color-accent-gold); transition: var(--transition); }
+    .feature-card:hover .feature-icon-circle { background: var(--color-accent-berry); color: #fff; border-color: transparent; transform: scale(1.1); }
+    .feature-card h3 { font-family: var(--font-display); font-size: 1.15rem; letter-spacing: 0.5px; margin-bottom: 8px; color: #fff; font-weight: 700; }
+    .feature-card p { font-size: 0.88rem; color: rgba(255, 255, 255, 0.7); line-height: 1.6; }
+
+    /* ── HISTORICAL PHOTO CARD ──────────────────────────────── */
+    .historical-photo-section { padding: 60px 0 100px; background: var(--color-primary-dark); }
+    .historical-card-wrapper { max-width: 860px; margin: 0 auto; background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: var(--radius-lg); padding: 36px; display: grid; grid-template-columns: 320px 1fr; gap: 36px; align-items: center; }
+    .historical-frame { position: relative; height: 260px; border-radius: var(--radius-md); overflow: hidden; background: #2b1f15; border: 2px solid rgba(200, 149, 60, 0.3); }
+    .historical-photo-img { width: 100%; height: 100%; object-fit: cover; filter: sepia(35%) contrast(105%); }
+    .historical-fallback { width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #f0e8d8; background: radial-gradient(circle at center, #423021, #1a120b); text-align: center; padding: 20px; }
+    .historical-fallback i { font-size: 3.5rem; color: var(--color-accent-gold); margin-bottom: 12px; }
+    .historical-fallback span { font-family: var(--font-display); font-size: 1.1rem; }
+    
+    .historical-info h3 { font-family: var(--font-display); font-size: 1.6rem; color: #fff; margin-bottom: 12px; }
+    .historical-info p { font-size: 0.92rem; color: rgba(255, 255, 255, 0.78); line-height: 1.7; margin-bottom: 20px; }
+    .historical-badge { display: inline-flex; align-items: center; gap: 8px; font-size: 0.78rem; font-weight: 700; text-transform: uppercase; color: var(--color-accent-gold); letter-spacing: 1.5px; background: rgba(200, 149, 60, 0.15); padding: 6px 14px; border-radius: var(--radius-full); }
+
+    /* ── FOOTER & CONTATO ───────────────────────────────────── */
+    footer { background: #0b180f; color: rgba(255, 255, 255, 0.7); padding: 80px 0 30px; border-top: 1px solid rgba(255, 255, 255, 0.06); }
+    .footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 50px; margin-bottom: 50px; }
+    .footer-logo { font-family: var(--font-display); font-size: 1.5rem; font-weight: 700; color: #ffffff; display: block; margin-bottom: 4px; }
+    .footer-tag { font-size: 0.72rem; letter-spacing: 2px; color: var(--color-accent-gold); text-transform: uppercase; display: block; margin-bottom: 16px; }
+    .footer-about p { font-size: 0.88rem; line-height: 1.7; margin-bottom: 20px; }
+    .footer-phone-link { display: inline-flex; align-items: center; gap: 10px; color: #25d366; font-weight: 700; font-size: 1.05rem; }
+    
+    footer h4 { color: #ffffff; font-size: 0.92rem; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 20px; font-weight: 600; }
+    footer ul { display: flex; flex-direction: column; gap: 10px; }
+    footer ul a { font-size: 0.88rem; }
+    footer ul a:hover { color: #ffffff; padding-left: 4px; }
+
+    .footer-bottom { border-top: 1px solid rgba(255, 255, 255, 0.08); padding-top: 28px; text-align: center; font-size: 0.82rem; }
+
+    /* Floating WhatsApp */
+    .floating-whatsapp { position: fixed; bottom: 28px; right: 28px; width: 60px; height: 60px; border-radius: 50%; background: #25d366; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 2rem; box-shadow: 0 8px 25px rgba(37, 211, 102, 0.5); z-index: 9999; transition: var(--transition); }
+    .floating-whatsapp:hover { transform: scale(1.1); box-shadow: 0 12px 30px rgba(37, 211, 102, 0.65); color: #fff; }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .hero-grid { text-align: center; }
+.hero-content { margin: 0 auto; }
+      .hero-desc { margin-left: auto; margin-right: auto; }
+      .hero-actions { justify-content: center; }
+      .history-grid { grid-template-columns: 1fr; }
+      .terroir-cards { grid-template-columns: 1fr; }
+      .features-grid { grid-template-columns: repeat(2, 1fr); }
+      .historical-card-wrapper { grid-template-columns: 1fr; text-align: center; }
+      .historical-frame { max-width: 320px; margin: 0 auto; }
+      .footer-grid { grid-template-columns: repeat(2, 1fr); }
+      .terroir-cta-banner { flex-direction: column; text-align: center; }
+    }
+
+    @media (max-width: 768px) {
+      .top-bar { display: none; }
+      .header-whatsapp-btn { display: none; }
+      .mobile-toggle { display: flex; }
+      nav { position: fixed; top: 0; right: -100%; width: 80%; max-width: 320px; height: 100vh; background: var(--color-primary-dark); z-index: 1001; padding: 90px 32px; transition: var(--transition); box-shadow: -10px 0 30px rgba(0,0,0,0.6); }
+      nav.open { right: 0; }
+      nav ul { flex-direction: column; gap: 24px; }
+      .highlights-grid { grid-template-columns: 1fr; gap: 16px; }
+      .features-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <aside class="top-bar">
+    <div class="container top-bar-content">
+      <span><i class="fa-solid fa-leaf"></i> Agricultura Familiar & Tradição Polonesa • Produtos Artesanais Puros</span>
+      <span>
+        <a href="tel:47999999999"><i class="fa-solid fa-phone"></i> (47) 99999-9999</a>
+      </span>
+    </div>
+  </aside>
+
+  <!-- Header -->
+  <header>
+    <div class="container header-content">
+      <a href="#inicio" class="brand-block">
+        <div class="brand-icon-emblem">
+          <i class="fa-solid fa-seedling"></i>
+        </div>
+        <div class="brand-titles">
+          <span class="brand-name">SABORES DA COLÔNIA</span>
+          <span class="brand-tagline">AGRICULTURA FAMILIAR</span>
+        </div>
+      </a>
+
+      <!-- Mobile Toggle -->
+      <button class="mobile-toggle" aria-label="Abrir Menu" id="menuToggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <!-- Navigation Menu -->
+      <nav id="mainNav">
+        <ul>
+          <li><a href="#inicio" class="nav-link active">INÍCIO</a></li>
+          <li><a href="#historia" class="nav-link">HISTÓRIA</a></li>
+          <li><a href="#produtos" class="nav-link">PRODUTOS</a></li>
+          <li><a href="#da-nossa-terra" class="nav-link">DA NOSSA TERRA</a></li>
+          <li><a href="#contato" class="nav-link">CONTATO</a></li>
+        </ul>
+      </nav>
+
+      <!-- WhatsApp CTA -->
+      <a href="https://wa.me/5547999999999" class="header-whatsapp-btn" target="_blank" rel="noopener">
+        <i class="fa-brands fa-whatsapp"></i> (47) 99999-9999
+      </a>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero" id="inicio">
+    <div class="container hero-grid">
+      <div class="hero-content">
+        <div class="hero-tag">
+          <i class="fa-solid fa-medal"></i> AGRICULTURA FAMILIAR
+        </div>
+        <h1 class="hero-title">Tradição que vem da nossa história.</h1>
+        <p class="hero-desc">
+          Uma família de imigrantes poloneses que transformou a terra em legado. Frutas vermelhas cultivadas com amor e transformadas em produtos artesanais cheios de sabor e história.
+        </p>
+                <div class="hero-actions">
+          <a href="#historia" class="btn btn-primary">CONHEÇA NOSSA HISTÓRIA</a>
+          <a href="#produtos" class="btn btn-outline">NOSSOS PRODUTOS →</a>
+        </div>
+      </div>
+    </div> 
+  </section>
+
+  </section>
+
+  <!-- Highlights Strip -->
+  <section class="highlights-strip">
+    <div class="container highlights-grid">
+      <div class="highlight-item">
+        <div class="highlight-icon"><i class="fa-solid fa-leaf"></i></div>
+        <div class="highlight-text">
+          <strong>Frutas Reais Selecionadas</strong>
+          <span>Colhidas no ponto exato de maturação</span>
+        </div>
+      </div>
+      <div class="highlight-item">
+        <div class="highlight-icon"><i class="fa-solid fa-utensils"></i></div>
+        <div class="highlight-text">
+          <strong>Receitas Ancestrais</strong>
+          <span>Preparo artesanal em fogo brando</span>
+        </div>
+      </div>
+      <div class="highlight-item">
+        <div class="highlight-icon"><i class="fa-solid fa-users"></i></div>
+        <div class="highlight-text">
+          <strong>Tradição Polonesa</strong>
+          <span>Legado de amor à agricultura familiar</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Section: Produtos Artesanais -->
+  <section class="products-section" id="produtos">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">PRODUTOS ARTESANAIS</span>
+        <h2 class="section-title">Feito com frutas reais e muito amor.</h2>
+        <p class="section-desc">Sem conservantes, espessantes ou corantes industriais. Cada pote e garrafa preserva o sabor autêntico e a doçura natural das frutas da nossa propriedade.</p>
+      </div>
+
+      <!-- Filter Controls -->
+      <div class="product-filter-tabs">
+        <button class="filter-tab active" data-filter="all">Todos os Produtos (7)</button>
+        <button class="filter-tab" data-filter="Geleia">Geleias (3)</button>
+        <button class="filter-tab" data-filter="Polpa">Polpas (2)</button>
+        <button class="filter-tab" data-filter="Suco">Sucos (1)</button>
+        <button class="filter-tab" data-filter="Frutas em Calda">Frutas em Calda (1)</button>
+      </div>
+
+      <!-- The 7 Product Cards from JSON -->
+      <div class="products-grid" id="productsGrid">
+
+        <!-- 1. Suco de Uva -->
+        <article class="product-card" data-category="Suco">
+          <div class="card-banner bg-uva">
+            <img src="path/to/suco-uva.png" alt="SUCO DE UVA" class="card-real-img" onerror="this.remove()">
+            <div class="card-artisan-visual">
+              <i class="fa-solid fa-wine-bottle card-icon"></i>
+              <span class="card-badge-label">Suco Puro</span>
+            </div>
+            <span class="card-type-tag">Suco</span>
+            <span class="card-quality-tag">Integral</span>
+          </div>
+          <div class="card-body">
+            <span class="card-category">Bebida Colonial</span>
+            <h3 class="card-title">SUCO DE UVA</h3>
+            <p class="card-desc">Suco integral 100% puro elaborado com uvas frescas da colônia. Sem adição de água, açúcar ou conservantes químicos.</p>
+            <a href="https://wa.me/5547999999999?text=Ol%C3%A1!%20Gostaria%20de%20encomendar%20o%20SUCO%20DE%20UVA" class="btn btn-card" target="_blank" rel="noopener">
+              <i class="fa-brands fa-whatsapp"></i> Pedir pelo WhatsApp
+            </a>
+          </div>
+        </article>
+
+        <!-- 2. Polpa de Framboesa -->
+        <article class="product-card" data-category="Polpa">
+          <div class="card-banner bg-framboesa">
+            <img src="path/to/polpa-framboesa.png" alt="POLPA DE FRAMBOESA" class="card-real-img" onerror="this.remove()">
+            <div class="card-artisan-visual">
+              <i class="fa-solid fa-seedling card-icon"></i>
+              <span class="card-badge-label">Polpa Pura</span>
+            </div>
+            <span class="card-type-tag">Polpa</span>
+            <span class="card-quality-tag">Ultracongelada</span>
+          </div>
+          <div class="card-body">
+            <span class="card-category">Frutas Silvestres</span>
+            <h3 class="card-title">POLPA DE FRAMBOESA</h3>
+            <p class="card-desc">Framboesas cultivadas com carinho na propriedade familiar, ultracongeladas para manter o aroma marcante e as vitaminas naturais.</p>
+            <a href="https://wa.me/5547999999999?text=Ol%C3%A1!%20Gostaria%20de%20encomendar%20a%20POLPA%20DE%20FRAMBOESA" class="btn btn-card" target="_blank" rel="noopener">
+              <i class="fa-brands fa-whatsapp"></i> Pedir pelo WhatsApp
+            </a>
+          </div>
+        </article>
+
+        <!-- 3. Polpa de Morango -->
+        <article class="product-card" data-category="Polpa">
+          <div class="card-banner bg-morango">
+            <img src="path/to/polpa-morango.png" alt="POLPA DE MORANGO" class="card-real-img" onerror="this.remove()">
+            <div class="card-artisan-visual">
+              <i class="fa-solid fa-seedling card-icon"></i>
+              <span class="card-badge-label">Polpa Pura</span>
+            </div>
+            <span class="card-type-tag">Polpa</span>
+            <span class="card-quality-tag">Do Campo</span>
+          </div>
+          <div class="card-body">
+            <span class="card-category">Frutas Silvestres</span>
+            <h3 class="card-title">POLPA DE MORANGO</h3>
+            <p class="card-desc">Morangos vermelhos e doces colhidos artesanalmente. Ideal para sucos frescos, vitaminas, confeitaria e sobremesas especiais.</p>
+            <a href="https://wa.me/5547999999999?text=Ol%C3%A1!%20Gostaria%20de%20encomendar%20a%20POLPA%20DE%20MORANGO" class="btn btn-card" target="_blank" rel="noopener">
+              <i class="fa-brands fa-whatsapp"></i> Pedir pelo WhatsApp
+            </a>
+          </div>
+        </article>
+
+        <!-- 4. Geleia de Morango -->
+        <article class="product-card" data-category="Geleia">
+          <div class="card-banner bg-geleia-morango">
+            <img src="path/to/geleia-morango.png" alt="GELEIA DE MORANGO" class="card-real-img" onerror="this.remove()">
+            <div class="card-artisan-visual">
+              <i class="fa-solid fa-jar card-icon"></i>
+              <span class="card-badge-label">Receita Colonial</span>
+            </div>
+            <span class="card-type-tag">Geleia</span>
+            <span class="card-quality-tag">Mais Vendida</span>
+          </div>
+          <div class="card-body">
+            <span class="card-category">Geleia Artesanal</span>
+            <h3 class="card-title">GELEIA DE MORANGO</h3>
+            <p class="card-desc">Cozida lentamente em fogo brando segundo o método ancestral polonês. Pedaços generosos de morango e brilho aveludado incomparável.</p>
+            <a href="https://wa.me/5547999999999?text=Ol%C3%A1!%20Gostaria%20de%20encomendar%20a%20GELEIA%20DE%20MORANGO" class="btn btn-card" target="_blank" rel="noopener">
+              <i class="fa-brands fa-whatsapp"></i> Pedir pelo WhatsApp
+            </a>
+          </div>
+        </article>
+
+        <!-- 5. Geleia de Amora -->
+        <article class="product-card" data-category="Geleia">
+          <div class="card-banner bg-geleia-amora">
+            <img src="path/to/geleia-amora.png" alt="GELEIA DE AMORA" class="card-real-img" onerror="this.remove()">
+            <div class="card-artisan-visual">
+              <i class="fa-solid fa-jar card-icon"></i>
+              <span class="card-badge-label">Receita Colonial</span>
+            </div>
+            <span class="card-type-tag">Geleia</span>
+            <span class="card-quality-tag">Artesanal</span>
+          </div>
+          <div class="card-body">
+            <span class="card-category">Geleia Artesanal</span>
+            <h3 class="card-title">GELEIA DE AMORA</h3>
+            <p class="card-desc">Amoras silvestres nobres, equilíbrio ideal entre doçura e acidez natural. Harmoniza perfeitamente com pães de fermentação natural e queijos finos.</p>
+            <a href="https://wa.me/5547999999999?text=Ol%C3%A1!%20Gostaria%20de%20encomendar%20a%20GELEIA%20DE%20AMORA" class="btn btn-card" target="_blank" rel="noopener">
+              <i class="fa-brands fa-whatsapp"></i> Pedir pelo WhatsApp
+            </a>
+          </div>
+        </article>
+
+        <!-- 6. Geleia de Frutas Vermelhas -->
+        <article class="product-card" data-category="Geleia">
+          <div class="card-banner bg-geleia-frutas">
+            <img src="path/to/geleia-frutas-vermelhas.png" alt="GELEIA DE FRUTAS VERMELHAS" class="card-real-img" onerror="this.remove()">
+            <div class="card-artisan-visual">
+              <i class="fa-solid fa-jar card-icon"></i>
+              <span class="card-badge-label">Receita Colonial</span>
+            </div>
+            <span class="card-type-tag">Geleia</span>
+            <span class="card-quality-tag">Especial</span>
+          </div>
+          <div class="card-body">
+            <span class="card-category">Geleia Artesanal</span>
+            <h3 class="card-title">GELEIA DE FRUTAS VERMELHAS</h3>
+            <p class="card-desc">A união sublime de morangos, amoras e framboesas da nossa lavoura. Textura encorpada, aroma inconfundível e o sabor da colônia.</p>
+            <a href="https://wa.me/5547999999999?text=Ol%C3%A1!%20Gostaria%20de%20encomendar%20a%20GELEIA%20DE%20FRUTAS%20VERMELHAS" class="btn btn-card" target="_blank" rel="noopener">
+              <i class="fa-brands fa-whatsapp"></i> Pedir pelo WhatsApp
+            </a>
+          </div>
+        </article>
+
+        <!-- 7. Frutas em Calda -->
+        <article class="product-card" data-category="Frutas em Calda">
+          <div class="card-banner bg-calda">
+            <img src="path/to/frutas-calda.png" alt="FRUTAS EM CALDA" class="card-real-img" onerror="this.remove()">
+            <div class="card-artisan-visual">
+              <i class="fa-solid fa-cubes-stacked card-icon"></i>
+              <span class="card-badge-label">Compota Nobre</span>
+            </div>
+            <span class="card-type-tag">Frutas em Calda</span>
+            <span class="card-quality-tag">Tradição</span>
+          </div>
+          <div class="card-body">
+            <span class="card-category">Compota Colonial</span>
+            <h3 class="card-title">FRUTAS EM CALDA</h3>
+            <p class="card-desc">Frutas inteiras preservadas em delicada calda cristalizada. Textura macia e sabor afetuoso que resgata a memória dos almoços de domingo na colônia.</p>
+            <a href="https://wa.me/5547999999999?text=Ol%C3%A1!%20Gostaria%20de%20encomendar%20as%20FRUTAS%20EM%20CALDA" class="btn btn-card" target="_blank" rel="noopener">
+              <i class="fa-brands fa-whatsapp"></i> Pedir pelo WhatsApp
+            </a>
+          </div>
+        </article>
+
+      </div>
+
+      <!-- View All Button from JSON -->
+      <div class="view-all-container">
+        <a href="#produtos" class="btn btn-view-all" id="resetFilterBtn">VER TODOS OS PRODUTOS →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: História -->
+  <section class="history-section" id="historia">
+    <div class="container history-grid">
+      <div class="history-content">
+        <span class="section-badge">Origem</span>
+        <h2 class="section-title">Cultivando uma história de família.</h2>
+        <p class="story-quote">
+          "A história da Framora nasceu na agricultura familiar e na coragem de transformar caminhos. Na década de 1990, Guilherme e Maria Gurski decidiram abandonar o cultivo do fumo e apostar em uma nova atividade: o cultivo de amora-preta e framboesa.
+
+Pioneiros na região, escolheram a agroecologia e o cultivo sem agrotóxicos, construindo uma produção que unia qualidade, respeito à natureza e sustentabilidade.
+
+Com o crescimento da produção e a participação do filho Luiz Sérgio Gurski, a família criou, em 2009, sua agroindústria para transformar as frutas cultivadas na propriedade em polpas, geleias, sucos, caldas e licores. Foi desse propósito que nasceu a Framora, nome que une framboesa e amora.
+
+Hoje, a família mantém viva essa tradição, recebendo visitantes e compartilhando não apenas seus produtos, mas também a história de uma propriedade construída com trabalho, sustentabilidade, família e amor pela terra."
+        </p>
+        <p>
+          Em <strong>Sabores da Colônia</strong>, a agricultura familiar não é apenas um trabalho comercial: é o elo vivo com as nossas raízes. Unimos o microclima privilegiado das serras brasileiras ao rigor artesanal herdado da colônia polonesa.
+        </p>
+        <p>
+          Aqui, cada tacho de geleia é mexido manualmente em fogo brando e cada cesto de frutas é colhido à mão nas primeiras horas da manhã, garantindo frescor absoluto em cada receita.
+        </p>
+        
+        <ul class="history-checkmarks">
+          <li><i class="fa-solid fa-circle-check"></i> 100% Agricultura Familiar Sustentável</li>
+          <li><i class="fa-solid fa-circle-check"></i> Zero conservantes ou aditivos químicos</li>
+          <li><i class="fa-solid fa-circle-check"></i> Receitas originais mantidas com fidelidade</li>
+        </ul>
+      </div>
+
+      <div class="history-box-art">
+        <div style="background: var(--color-card-alt); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: 40px; box-shadow: var(--shadow-md);">
+          <div style="font-size: 2.5rem; color: var(--color-accent-gold); margin-bottom: 20px;">
+            <i class="fa-solid fa-wheat-awn"></i>
+          </div>
+          <h3 style="font-family: var(--font-display); font-size: 1.6rem; color: var(--color-primary-dark); margin-bottom: 14px;">Herança Viva no Campo</h3>
+          <p style="font-size: 0.95rem; color: var(--color-text-muted); line-height: 1.7; margin-bottom: 24px;">
+            Produzimos em pequenos lotes controlados para garantir que cada pote chegue à sua mesa com a mesma intensidade de sabor e frescor que sentimos ao pé da árvore.
+          </p>
+          <a href="https://wa.me/5547999999999" target="_blank" rel="noopener" class="btn btn-primary" style="width: 100%;">
+            <i class="fa-brands fa-whatsapp"></i> Conversar com a Família
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Da Nossa Terra -->
+  <section class="terroir-section" id="da-nossa-terra">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">DA NOSSA TERRA</span>
+        <h2 class="section-title">O cuidado em cada etapa da produção.</h2>
+        <p class="section-desc">O segredo do nosso sabor está no respeito ao solo, ao ciclo natural das safras e à dedicação artesanal.</p>
+      </div>
+
+      <div class="terroir-cards">
+        <div class="terroir-box">
+          <div class="terroir-icon"><i class="fa-solid fa-mountain-sun"></i></div>
+          <h3>colheita e transformação</h3>
+          <p>Frutas cultivadas pela família, transformadas artesanalmente em produtos cheios de sabor.</p>
+        </div>
+
+        <div class="terroir-box">
+          <div class="terroir-icon"><i class="fa-solid fa-hand-holding-heart"></i></div>
+          <h3>cultivo conciente</h3>
+          <p>Cultivo agroecológico, sem agrotóxicos, respeitando a natureza e a terra.</p>
+        </div>
+
+        <div class="terroir-box">
+          <div class="terroir-icon"><i class="fa-solid fa-fire-burner"></i></div>
+          <h3>Preparo controlado</h3>
+          <p>manuseio fino e cuidado em cada etapa da produção.</p>
+        </div>
+      </div>
+
+      <div class="terroir-cta-banner">
+        <div>
+          <h3>Deseja provar o verdadeiro sabor colonial?</h3>
+          <p>Atendemos encomendas para residências, cafeterias, confeitarias artesanais e empórios parceiros.</p>
+        </div>
+        <a href="https://wa.me/5547999999999" target="_blank" rel="noopener" class="btn btn-primary" style="background: #25d366; color: #fff; box-shadow: none; white-space: nowrap;">
+          <i class="fa-brands fa-whatsapp"></i> Fazer Pedido Direto
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer Features: Os 4 Diferenciais do JSON -->
+  <section class="footer-features-section">
+    <div class="container">
+      <div class="features-grid">
+        
+        <!-- Feature 1: fa-leaf -->
+        <div class="feature-card">
+          <div class="feature-icon-circle">
+            <i class="fa-solid fa-leaf"></i>
+          </div>
+          <h3>PRODUÇÃO FAMILIAR</h3>
+          <p>Cuidado em cada etapa do processo.</p>
+        </div>
+
+        <!-- Feature 2: fa-basket-shopping -->
+        <div class="feature-card">
+          <div class="feature-icon-circle">
+            <i class="fa-solid fa-basket-shopping"></i>
+          </div>
+          <h3>FRUTAS SELECIONADAS</h3>
+          <p>Colhidas no ponto certo da maturação.</p>
+        </div>
+
+        <!-- Feature 3: fa-utensils -->
+        <div class="feature-card">
+          <div class="feature-icon-circle">
+            <i class="fa-solid fa-utensils"></i>
+          </div>
+          <h3>RECEITAS ARTESANAIS</h3>
+          <p>Sabor caseiro com ingredientes naturais.</p>
+        </div>
+
+        <!-- Feature 4: fa-heart -->
+        <div class="feature-card">
+          <div class="feature-icon-circle">
+            <i class="fa-solid fa-heart"></i>
+          </div>
+          <h3>TRADIÇÃO QUE SE RENOVA</h3>
+          <p>Honramos o passado, construímos o futuro.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer Historical Photo Card -->
+  <section class="historical-photo-section">
+    <div class="container">
+      <div class="historical-card-wrapper">
+        <div class="historical-frame">
+          <img src="fotos/casalframora.jpeg" alt="Foto histórica de fundadores" class="historical-photo-img" onerror="this.remove()">
+          <div class="historical-fallback">
+            <i class="fa-solid fa-people-roof"></i>
+            <span>Família Fundadora</span>
+          </div>
+        </div>
+
+        <div class="historical-info">
+          <span class="historical-badge"><i class="fa-solid fa-clock-rotate-left"></i> Memória Viva</span>
+          <h3>Foto histórica de fundadores</h3>
+          <p>
+           em busca de alternativas visando cuidar do solo que pisam, transformaram a terra em legado familiar duradouro.
+          </p>
+          <a href="https://wa.me/5547999999999" target="_blank" rel="noopener" class="btn btn-outline" style="border-color: rgba(200, 149, 60, 0.4); color: var(--color-accent-gold);">
+            <i class="fa-solid fa-phone"></i> Fale com a Gente: (47) 99999-9999
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer & Contato -->
+  <footer id="contato">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-about">
+          <span class="footer-logo">SABORES DA COLÔNIA</span>
+          <span class="footer-tag">AGRICULTURA FAMILIAR</span>
+          <p>
+            Tradição polonesa e frutas vermelhas colhidas com dedicação. Produtos artesanais puros feitos com frutas reais e muito amor.
+          </p>
+          <a href="https://wa.me/5547999999999" class="footer-phone-link" target="_blank" rel="noopener">
+            <i class="fa-brands fa-whatsapp"></i> (47) 99999-9999
+          </a>
+        </div>
+
+        <div>
+          <h4>Navegação</h4>
+          <ul>
+            <li><a href="#inicio">INÍCIO</a></li>
+            <li><a href="#historia">HISTÓRIA</a></li>
+            <li><a href="#produtos">PRODUTOS</a></li>
+            <li><a href="#da-nossa-terra">DA NOSSA TERRA</a></li>
+            <li><a href="#contato">CONTATO</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4>Produtos</h4>
+          <ul>
+            <li><a href="#produtos">Suco de Uva</a></li>
+            <li><a href="#produtos">Polpa de Framboesa</a></li>
+            <li><a href="#produtos">Polpa de Morango</a></li>
+            <li><a href="#produtos">Geleia de Morango</a></li>
+            <li><a href="#produtos">Geleia de Amora</a></li>
+            <li><a href="#produtos">Geleia Frutas Vermelhas</a></li>
+            <li><a href="#produtos">Frutas em Calda</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4>Atendimento</h4>
+          <p style="font-size: 0.88rem; line-height: 1.6; margin-bottom: 12px;">
+            <i class="fa-solid fa-location-dot" style="color: var(--color-accent-gold); margin-right: 6px;"></i>
+            Região Colonial — Santa Catarina / SC
+          </p>
+          <p style="font-size: 0.88rem; line-height: 1.6; margin-bottom: 12px;">
+            <i class="fa-solid fa-calendar-days" style="color: var(--color-accent-gold); margin-right: 6px;"></i>
+            Segunda a Sábado: 08h às 18h
+          </p>
+          <p style="font-size: 0.88rem; line-height: 1.6;">
+            <i class="fa-solid fa-truck" style="color: var(--color-accent-gold); margin-right: 6px;"></i>
+            Entregas e cotações sob encomenda
+          </p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 SABORES DA COLÔNIA — Todos os direitos reservados. Agricultura Familiar.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating WhatsApp Button -->
+  <a href="https://wa.me/5547999999999?text=Ol%C3%A1!%20Vim%20pelo%20site%20Sabores%20da%20Col%C3%B4nia" class="floating-whatsapp" target="_blank" rel="noopener" aria-label="WhatsApp">
+    <i class="fa-brands fa-whatsapp"></i>
+  </a>
+
+  <!-- JavaScript for Interactive Filtering & Mobile Menu -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // Mobile Drawer Menu
+      const toggle = document.getElementById("menuToggle");
+      const nav = document.getElementById("mainNav");
+      if (toggle && nav) {
+        toggle.addEventListener("click", () => {
+          toggle.classList.toggle("active");
+          nav.classList.toggle("open");
+        });
+        nav.querySelectorAll("a").forEach(link => {
+          link.addEventListener("click", () => {
+            toggle.classList.remove("active");
+            nav.classList.remove("open");
+          });
+        });
+      }
+
+      // Filter Tabs for the 7 Products
+      const tabs = document.querySelectorAll(".filter-tab");
+      const cards = document.querySelectorAll(".product-card");
+      const resetBtn = document.getElementById("resetFilterBtn");
+
+      tabs.forEach(tab => {
+        tab.addEventListener("click", () => {
+          tabs.forEach(t => t.classList.remove("active"));
+          tab.classList.add("active");
+
+          const filter = tab.dataset.filter;
+          cards.forEach(card => {
+            const category = card.dataset.category;
+            if (filter === "all" || category === filter) {
+              card.style.display = "flex";
+            } else {
+              card.style.display = "none";
+            }
+          });
+        });
+      });
+
+      if (resetBtn) {
+        resetBtn.addEventListener("click", () => {
+          const allTab = document.querySelector('.filter-tab[data-filter="all"]');
+          if (allTab) allTab.click();
+        });
+      }
+    });
+  </script>
+</body>
+</html>
