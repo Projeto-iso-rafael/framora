@@ -171,9 +171,14 @@
 
     /* ── SEÇÃO HISTÓRIA ─────────────────────────────────────── */
     .history-section { padding: 100px 0; background: #fff; }
-    .history-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 60px; align-items: center; }
+    
     .story-quote { font-family: var(--font-display); font-size: 1.28rem; font-style: italic; color: var(--color-primary); line-height: 1.65; margin: 20px 0; border-left: 3px solid var(--color-accent-gold); padding-left: 20px; }
-    .history-text p { color: var(--color-text-muted); font-size: 0.95rem; line-height: 1.8; margin-bottom: 16px; }
+    .history-grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); align-items: stretch; gap: 48px; }
+.history-content { min-width: 0; display: flex; flex-direction: column; justify-content: center; }
+.history-content p { margin-bottom: 1.25rem; line-height: 1.7; color: var(--color-text-muted); }
+.history-content p:last-child { margin-bottom: 0; }
+.history-box-art { position: relative; min-height: 380px; margin: 0; overflow: hidden; border: 1px solid var(--color-border); border-radius: var(--radius-md); box-shadow: var(--shadow-md); }
+.history-box-art img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; }
     
     .history-checkmarks { margin-top: 24px; display: flex; flex-direction: column; gap: 10px; }
     .history-checkmarks li { display: flex; align-items: center; gap: 10px; font-weight: 600; font-size: 0.92rem; color: var(--color-primary-dark); }
@@ -264,15 +269,6 @@
 </head>
 <body>
 
-  <!-- Top Announcement Bar -->
-  <aside class="top-bar">
-    <div class="container top-bar-content">
-      <span><i class="fa-solid fa-leaf"></i> Agricultura Familiar & Tradição Polonesa • Produtos Artesanais Puros</span>
-      <span>
-        <a href="tel:47999999999"><i class="fa-solid fa-phone"></i> (47) 99999-9999</a>
-      </span>
-    </div>
-  </aside>
 
   <!-- Header -->
   <header>
@@ -333,32 +329,7 @@
 
   </section>
 
-  <!-- Highlights Strip -->
-  <section class="highlights-strip">
-    <div class="container highlights-grid">
-      <div class="highlight-item">
-        <div class="highlight-icon"><i class="fa-solid fa-leaf"></i></div>
-        <div class="highlight-text">
-          <strong>Frutas Reais Selecionadas</strong>
-          <span>Colhidas no ponto exato de maturação</span>
-        </div>
-      </div>
-      <div class="highlight-item">
-        <div class="highlight-icon"><i class="fa-solid fa-utensils"></i></div>
-        <div class="highlight-text">
-          <strong>Receitas Ancestrais</strong>
-          <span>Preparo artesanal em fogo brando</span>
-        </div>
-      </div>
-      <div class="highlight-item">
-        <div class="highlight-icon"><i class="fa-solid fa-users"></i></div>
-        <div class="highlight-text">
-          <strong>Tradição Polonesa</strong>
-          <span>Legado de amor à agricultura familiar</span>
-        </div>
-      </div>
-    </div>
-  </section>
+  
 
   <!-- Main Section: Produtos Artesanais -->
   <section class="products-section" id="produtos">
@@ -537,49 +508,59 @@
     </div>
   </section>
 
-  <!-- Section: História -->
+<!-- Section: História (Com a imagem do tamanho desejado acompanhando o texto) -->
   <section class="history-section" id="historia">
     <div class="container history-grid">
+
+      <!-- Texto da história -->
       <div class="history-content">
         <span class="section-badge">Origem</span>
-        <h2 class="section-title">Cultivando uma história de família.</h2>
-        <p class="story-quote">
-          "A história da Framora nasceu na agricultura familiar e na coragem de transformar caminhos. Na década de 1990, Guilherme e Maria Gurski decidiram abandonar o cultivo do fumo e apostar em uma nova atividade: o cultivo de amora-preta e framboesa.
 
-Pioneiros na região, escolheram a agroecologia e o cultivo sem agrotóxicos, construindo uma produção que unia qualidade, respeito à natureza e sustentabilidade.
+        <h2 class="section-title">
+          Cultivando uma história de família.
+        </h2>
 
-Com o crescimento da produção e a participação do filho Luiz Sérgio Gurski, a família criou, em 2009, sua agroindústria para transformar as frutas cultivadas na propriedade em polpas, geleias, sucos, caldas e licores. Foi desse propósito que nasceu a Framora, nome que une framboesa e amora.
-
-Hoje, a família mantém viva essa tradição, recebendo visitantes e compartilhando não apenas seus produtos, mas também a história de uma propriedade construída com trabalho, sustentabilidade, família e amor pela terra."
-        </p>
         <p>
-          Em <strong>Sabores da Colônia</strong>, a agricultura familiar não é apenas um trabalho comercial: é o elo vivo com as nossas raízes. Unimos o microclima privilegiado das serras brasileiras ao rigor artesanal herdado da colônia polonesa.
+          A história da Framora nasceu na agricultura familiar e na coragem
+          de transformar caminhos. Na década de 1990, Guilherme e Maria
+          Gurski decidiram abandonar o cultivo do fumo e apostar em uma
+          nova atividade: o cultivo de amora-preta e framboesa.
         </p>
+
         <p>
-          Aqui, cada tacho de geleia é mexido manualmente em fogo brando e cada cesto de frutas é colhido à mão nas primeiras horas da manhã, garantindo frescor absoluto em cada receita.
+          Pioneiros na região, escolheram a agroecologia e o cultivo sem
+          agrotóxicos, construindo uma produção que unia qualidade,
+          respeito à natureza e sustentabilidade.
         </p>
-        
-        <ul class="history-checkmarks">
-          <li><i class="fa-solid fa-circle-check"></i> 100% Agricultura Familiar Sustentável</li>
-          <li><i class="fa-solid fa-circle-check"></i> Zero conservantes ou aditivos químicos</li>
-          <li><i class="fa-solid fa-circle-check"></i> Receitas originais mantidas com fidelidade</li>
-        </ul>
+
+        <p>
+          Com o crescimento da produção e a participação do filho Luiz
+          Sérgio Gurski, a família criou, em 2009, sua agroindústria para
+          transformar as frutas cultivadas na propriedade em polpas,
+          geleias, sucos, caldas e licores. Foi desse propósito que nasceu
+          a Framora, nome que une framboesa e amora.
+        </p>
+
+        <p>
+          Hoje, a família mantém viva essa tradição, recebendo visitantes
+          e compartilhando não apenas seus produtos, mas também a história
+          de uma propriedade construída com trabalho, sustentabilidade,
+          família e amor pela terra.
+        </p>
       </div>
 
+      <!-- Foto à direita expandida na altura do texto -->
       <div class="history-box-art">
-        <div style="background: var(--color-card-alt); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: 40px; box-shadow: var(--shadow-md);">
-          <div style="font-size: 2.5rem; color: var(--color-accent-gold); margin-bottom: 20px;">
-            <i class="fa-solid fa-wheat-awn"></i>
-          </div>
-          <h3 style="font-family: var(--font-display); font-size: 1.6rem; color: var(--color-primary-dark); margin-bottom: 14px;">Herança Viva no Campo</h3>
-          <p style="font-size: 0.95rem; color: var(--color-text-muted); line-height: 1.7; margin-bottom: 24px;">
-            Produzimos em pequenos lotes controlados para garantir que cada pote chegue à sua mesa com a mesma intensidade de sabor e frescor que sentimos ao pé da árvore.
-          </p>
-          <a href="https://wa.me/5547999999999" target="_blank" rel="noopener" class="btn btn-primary" style="width: 100%;">
-            <i class="fa-brands fa-whatsapp"></i> Conversar com a Família
-          </a>
-        </div>
+        <img
+          src="fotos/vovoframora.JPG"
+          alt="A família Gurski na propriedade rural da Framora"
+        >
       </div>
+
+    </div>
+  </section>
+
+
     </div>
   </section>
 
